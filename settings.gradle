@@ -1,0 +1,6 @@
+rootProject.name = "Ad Nuntium"
+include ':app'
+include ':domain'
+include ':data'
+include ':data-remote'
+include ':data-cache'
