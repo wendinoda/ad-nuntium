@@ -1,19 +1,24 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id('com.android.application')
+    id('kotlin-android')
+    id('androidx.navigation.safeargs.kotlin')
+    id('kotlin-kapt')
+    id('dagger.hilt.android.plugin')
 }
 
 android {
-    compileSdkVersion 30
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSdk"]
 
     defaultConfig {
-        applicationId "zw.co.adnuntium"
-        minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        applicationId globalConfiguration["applicationId"]
+        minSdkVersion globalConfiguration["minSdkVersion"]
+        targetSdkVersion globalConfiguration["targetSdkVersion"]
+        versionCode globalConfiguration["versionCode"]
+        versionName globalConfiguration["versionName"]
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
     }
 
     buildTypes {
@@ -22,6 +27,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -31,13 +41,27 @@ android {
     }
 }
 
-dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+dependencies {
+    def testDependencies = rootProject.ext.testDependencies
+    def androidXDependencies = rootProject.ext.androidXDependencies
+
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+    implementation project(path: ':data-remote')
+    implementation project(path: ':data-cache')
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation androidXDependencies.kotlin
+    implementation androidXDependencies.coreKTX
+    implementation androidXDependencies.appCompat
+    implementation androidXDependencies.material
+    implementation androidXDependencies.daggerHiltAndroid
+
+    kapt androidXDependencies.daggerHiltCompiler
+
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.androidJunit
+    androidTestImplementation testDependencies.espressoCore
 }
