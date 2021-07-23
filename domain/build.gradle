@@ -1,23 +1,22 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id 'kotlin'
 }
 
 dependencies {
-
     def testDependencies = rootProject.ext.testDependencies
     def androidXDependencies = rootProject.ext.androidXDependencies
 
-    implementation androidXDependencies.daggerHiltAndroid
     implementation androidXDependencies.jodaTime
     implementation androidXDependencies.kotlinxCoroutines
+    implementation androidXDependencies.javaxInject
+    implementation androidXDependencies.kotlinReflection
 
-    kapt androidXDependencies.daggerHiltCompiler
-
+    testImplementation project(':test_module')
     testImplementation testDependencies.coroutinesTest
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockito
-    testImplementation testDependencies.mockitoInline
+    testImplementation testDependencies.coreTest
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.androidJunit
+    testImplementation testDependencies.googleTruth
 }

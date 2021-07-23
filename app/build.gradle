@@ -1,15 +1,17 @@
 plugins {
-    id('com.android.application')
-    id('kotlin-android')
-    id('androidx.navigation.safeargs.kotlin')
-    id('kotlin-kapt')
-    id('dagger.hilt.android.plugin')
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlinx-serialization'
 }
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfiguration["compileSdk"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
 
     defaultConfig {
         applicationId globalConfiguration["applicationId"]
@@ -43,6 +45,8 @@ android {
 
 
 dependencies {
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def testDependencies = rootProject.ext.testDependencies
     def androidXDependencies = rootProject.ext.androidXDependencies
 
@@ -50,6 +54,7 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':data-remote')
     implementation project(path: ':data-cache')
+    implementation project(path: ':presentation')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
@@ -58,7 +63,26 @@ dependencies {
     implementation androidXDependencies.appCompat
     implementation androidXDependencies.material
     implementation androidXDependencies.daggerHiltAndroid
+    implementation androidXDependencies.hiltCore
+    implementation androidXDependencies.hiltViewModel
+    implementation androidXDependencies.kotlinReflection
+    implementation androidXDependencies.fragmentKtx
+    implementation androidXDependencies.constraintLayout
+    implementation androidXDependencies.navigationFragment
+    implementation androidXDependencies.navigationUi
+    implementation androidXDependencies.kotlinxCoroutines
+    implementation androidXDependencies.timber
+    implementation androidXDependencies.javaxInject
+    implementation androidXDependencies.shimmer
+    implementation androidXDependencies.coil
+    implementation androidXDependencies.kotlinSerialization
+    implementation androidXDependencies.roomRuntime
+    implementation androidXDependencies.room
+    implementation androidXDependencies.flexiBox
 
+    annotationProcessor androidXDependencies.roomCompiler
+    kapt androidXDependencies.roomCompiler
+    kapt androidXDependencies.hiltCompiler
     kapt androidXDependencies.daggerHiltCompiler
 
     testImplementation testDependencies.junit

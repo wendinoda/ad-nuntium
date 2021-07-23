@@ -1,23 +1,21 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
-    compileSdkVersion 30
 
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfiguration["compileSdk"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
 
     defaultConfig {
-        applicationId "zw.co.data_cache"
         minSdkVersion globalConfiguration["minSdkVersion"]
         targetSdkVersion globalConfiguration["targetSdkVersion"]
-        versionCode globalConfiguration["versionCode"]
-        versionName globalConfiguration["versionName"]
 
-        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+        testInstrumentationRunner 'androidx.test.ext.junit.runners.AndroidJUnit'
     }
 
     buildTypes {
@@ -33,8 +31,58 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LGPL2.1'
+        exclude "**/attach_hotspot_windows.dll"
+        exclude "META-INF/licenses/ASM"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
+    def testDependencies = rootProject.ext.testDependencies
+    def androidXDependencies = rootProject.ext.androidXDependencies
+
     implementation project(':data')
+
+    implementation androidXDependencies.jodaTime
+    implementation androidXDependencies.kotlinxCoroutines
+    implementation androidXDependencies.javaxInject
+    implementation androidXDependencies.kotlinReflection
+    implementation androidXDependencies.roomRuntime
+    implementation androidXDependencies.room
+
+    annotationProcessor androidXDependencies.roomCompiler
+    kapt androidXDependencies.roomCompiler
+
+    testImplementation testDependencies.roomTesting
+    testImplementation project(':test_module')
+    testImplementation testDependencies.coroutinesTest
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.coreTest
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.roboelectric
+    testImplementation testDependencies.testCore
+
+    androidTestImplementation project(':test_module')
+    androidTestImplementation testDependencies.coroutinesTest
+    androidTestImplementation testDependencies.junit
+    androidTestImplementation testDependencies.mockito
+    androidTestImplementation testDependencies.coreTest
+    androidTestImplementation testDependencies.mockitoKotlin
+    androidTestImplementation testDependencies.roboelectric
+    androidTestImplementation testDependencies.androidJunit
+    androidTestImplementation testDependencies.testCore
 }

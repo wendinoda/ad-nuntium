@@ -1,16 +1,33 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlinx-serialization'
 }
 
 android {
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSdk"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSdkVersion"]
+        targetSdkVersion globalConfiguration["targetSdkVersion"]
+    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            debug {
+                buildConfigField "String", 'BASE_URL', "\"https://newsapi.org\""
+                buildConfigField "String", 'API_KEY', "\"${project.apiKey}\""
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -18,8 +35,33 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
 
-dependencies {
-    implementation project(':data')
+    dependencies {
+
+        def testDependencies = rootProject.ext.testDependencies
+        def androidXDependencies = rootProject.ext.androidXDependencies
+
+        implementation project(':data')
+
+        implementation androidXDependencies.javaxInject
+        implementation androidXDependencies.timber
+        implementation androidXDependencies.retrofit
+        implementation androidXDependencies.okHttpBom
+        implementation androidXDependencies.okhttp3LoggingInterceptor
+        implementation androidXDependencies.okhttp
+        implementation androidXDependencies.kotlinxCoroutines
+        implementation androidXDependencies.kotlinSerialization
+        implementation androidXDependencies.kotlinSerializationConvertor
+        implementation androidXDependencies.kotlinReflection
+        implementation androidXDependencies.jodaTime
+
+        testImplementation project(':test_module')
+        testImplementation testDependencies.coroutinesTest
+        testImplementation testDependencies.junit
+        testImplementation testDependencies.mockito
+        testImplementation testDependencies.coreTest
+        testImplementation testDependencies.mockitoKotlin
+        testImplementation testDependencies.androidJunit
+        testImplementation testDependencies.googleTruth
+    }
 }

@@ -2,6 +2,7 @@ ext {
     applicationId = "zw.co.adnuntium"
     minSdkVersion = 24
     targetSdkVersion = 30
+    buildToolsVersion = '30.0.0'
     compileSdk = 30
     versionCode = 1
     versionName = "1.0"
@@ -13,7 +14,7 @@ ext {
     constraintLayout = "2.0.4"
     coreKTX = "1.5.0"
     material = "1.3.0"
-    daggerHilt = "2.28-alpha"
+    daggerHilt = "2.37"
     androidxTest = "1.2.0"
     espresso = "3.3.0"
     androidxJunit = "1.1.2"
@@ -23,13 +24,25 @@ ext {
     mockitoKotlin = "3.2.0"
     gradleVersion = "4.1.3"
     kotlin = "1.5.10"
+    javaxInject = '1'
     timber = "4.7.1"
-    coreTesting = "1.1.1"
+    coreTesting = "2.1.0"
     retrofit = "2.9.0"
     okHttpBom = "4.9.0"
     jodaTime = "2.10.5"
     kotlinxCoroutines = "1.5.0"
     room = "2.3.0"
+    moshi = "1.12.0"
+    kotlinSerialization = "1.2.1"
+    kotlinSerializationConvertor = "0.8.0"
+    googleTruth = "1.1.3"
+    roboelectric = "4.4"
+    lifecycle = "2.3.1"
+    shimmerVersion = "0.5.0"
+    coil = "1.3.0"
+    hiltViewModel = "1.0.0-alpha03"
+    hiltCompiler = "1.0.0"
+    flexiBox = "3.0.0"
 
     //Build dependencies
     buildDependencies = [
@@ -41,25 +54,42 @@ ext {
 
     //AndroidX dependencies
     androidXDependencies = [
-            "kotlin"                   : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin}",
-            "fragmentKtx"              : "androidx.fragment:fragment-ktx:${appCompat}",
-            "coreKTX"                  : "androidx.core:core-ktx:${coreKTX}",
-            "constraintLayout"         : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
-            "material"                 : "com.google.android.material:material:${material}",
-            "appCompat"                : "androidx.appcompat:appcompat:${appCompat}",
-            "navigationFragment"       : "androidx.navigation:navigation-fragment-ktx:${navigation}",
-            "navigationUI"             : "androidx.navigation:navigation-ui-ktx:${navigation}",
-            "roomRuntime"              : "androidx.room:room-runtime:${room}",
-            "roomCompiler"             : "androidx.room:room-compiler${room}",
-            "kotlinxCoroutines"        : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutines}",
-            "daggerHiltAndroid"        : "com.google.dagger:hilt-android:${daggerHilt}",
-            "daggerHiltCompiler"       : "com.google.dagger:hilt-android-compiler:${daggerHilt}",
-            "okHttpBom"                : "com.squareup.okhttp3:okhttp-bom:${okHttpBom}",
-            "okhttp"                   : "com.squareup.okhttp3:okhttp",
-            "okhttp3LoggingInterceptor": "com.squareup.okhttp3:logging-interceptor",
-            "retrofit"                 : "com.squareup.retrofit2:retrofit:${retrofit}",
-            "timber"                   : "com.jakewharton.timber:timber:${timber}",
-            "jodaTime"                 : "joda-time:joda-time:${jodaTime}",
+            "kotlin"                      : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin}",
+            "fragmentKtx"                 : "androidx.fragment:fragment-ktx:${appCompat}",
+            "coreKTX"                     : "androidx.core:core-ktx:${coreKTX}",
+            "constraintLayout"            : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
+            "material"                    : "com.google.android.material:material:${material}",
+            "appCompat"                   : "androidx.appcompat:appcompat:${appCompat}",
+            "navigationFragment"          : "androidx.navigation:navigation-fragment-ktx:${navigation}",
+            "navigationUi"                : "androidx.navigation:navigation-ui-ktx:${navigation}",
+            "roomRuntime"                 : "androidx.room:room-runtime:${room}",
+            "room"                        : "androidx.room:room-ktx:${room}",
+            "roomCompiler"                : "androidx.room:room-compiler:${room}",
+            "kotlinxCoroutines"           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutines}",
+            "daggerHiltAndroid"           : "com.google.dagger:hilt-android:${daggerHilt}",
+            "daggerHiltCompiler"          : "com.google.dagger:hilt-android-compiler:${daggerHilt}",
+            "hiltCompiler"                : "androidx.hilt:hilt-compiler:${hiltCompiler}",
+            "hiltViewModel"               : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModel}",
+            "hiltCore"                    : "com.google.dagger:hilt-core:${daggerHilt}",
+            "okHttpBom"                   : "com.squareup.okhttp3:okhttp-bom:${okHttpBom}",
+            "okhttp"                      : "com.squareup.okhttp3:okhttp",
+            "okhttp3LoggingInterceptor"   : "com.squareup.okhttp3:logging-interceptor",
+            "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofit}",
+            "timber"                      : "com.jakewharton.timber:timber:${timber}",
+            "jodaTime"                    : "joda-time:joda-time:${jodaTime}",
+            "javaxInject"                 : "javax.inject:javax.inject:${javaxInject}",
+            "moshi"                       : "com.squareup.moshi:moshi:${moshi}",
+            "moshiConvertor"              : "com.squareup.retrofit2:converter-moshi:${retrofit}",
+            "kotlinSerialization"         : "org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinSerialization}",
+            "kotlinSerializationConvertor": "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${kotlinSerializationConvertor}",
+            "kotlinReflection"            : "org.jetbrains.kotlin:kotlin-reflect:${kotlin}",
+            "lifeCycleViewModel"          : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}",
+            "lifeCycleLiveData"           : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}",
+            "lifeCycleCompiler"           : "androidx.lifecycle:lifecycle-compiler:${lifecycle}",
+            "shimmer"                     : "com.facebook.shimmer:shimmer:${shimmerVersion}",
+            "coil"                        : "io.coil-kt:coil:${coil}",
+            "flexiBox"                    : "com.google.android.flexbox:flexbox:${flexiBox}",
+
     ]
 
     //Test dependencies
@@ -72,13 +102,15 @@ ext {
             "espressoContrib"    : "androidx.test.espresso:espresso-contrib:${espresso}",
             "fragmentTesting"    : "androidx.fragment:fragment-testing:${androidxTest}",
             "androidJunit"       : "androidx.test.ext:junit:${androidxJunit}",
-            "coreTest"           : "android.arch.core:core-testing:${coreTesting}",
+            "coreTest"           : "androidx.arch.core:core-testing:${coreTesting}",
             "coroutinesTest"     : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${kotlinxCoroutines}",
             "roomTesting"        : "androidx.room:room-testing:${room}",
             "junit"              : "junit:junit:${junit}",
             "junitPlatformRunner": "org.junit.platform:junit-platform-runner:${junitPlatformRunner}",
             "mockito"            : "org.mockito:mockito-core:${mockito}",
             "mockitoInline"      : "org.mockito:mockito-inline:${mockito}",
-            "mockitoKotlin"      : "com.nhaarman:mockito-kotlin:${mockitoKotlin}",
+            "mockitoKotlin"      : "org.mockito.kotlin:mockito-kotlin:${mockitoKotlin}",
+            "googleTruth"        : "com.google.truth:truth:${googleTruth}",
+            "roboelectric"       : "org.robolectric:robolectric:${roboelectric}",
     ]
 }

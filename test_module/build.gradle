@@ -1,0 +1,16 @@
+plugins {
+    id 'kotlin'
+}
+
+dependencies {
+    def dependencies = rootProject.ext.androidXDependencies
+    def testDependencies = rootProject.ext.testDependencies
+
+    implementation dependencies.kotlinxCoroutines
+    implementation androidXDependencies.jodaTime
+
+    implementation testDependencies.coreTest
+    implementation testDependencies.coroutinesTest
+    implementation testDependencies.junit
+    implementation testDependencies.coreTest
+}
