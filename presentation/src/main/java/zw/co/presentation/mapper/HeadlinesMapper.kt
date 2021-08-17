@@ -17,7 +17,7 @@ class HeadlinesMapper @Inject constructor() : Mapper<Headlines, HeadlinesView> {
         }
     )
 
-    private fun mapToUi(type: Articles) = ArticlesView(
+    fun mapToUi(type: Articles) = ArticlesView(
         title = type.title,
         description = type.description,
         author = type.author,

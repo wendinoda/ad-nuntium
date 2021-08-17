@@ -6,7 +6,9 @@ import zw.co.data_cache.model.HeadlineArticlesEntity
 import zw.co.data_cache.model.SourceHeadlineEntity
 import javax.inject.Inject
 
-class HeadlinesEntityMapper @Inject constructor() :
+class HeadlinesEntityMapper @Inject constructor(
+    private val dateFormatter: DateFormatter
+) :
     Mapper<HeadlineArticlesEntity, ArticlesDataModel> {
     override fun mapFromCached(type: HeadlineArticlesEntity) = ArticlesDataModel(
         author = type.author,
@@ -14,7 +16,7 @@ class HeadlinesEntityMapper @Inject constructor() :
         description = type.description,
         url = type.url,
         urlToImage = type.urlToImage,
-        publishedAt = type.publishedAt,
+        publishedAt = dateFormatter.format(type.publishedAt),
         content = type.content,
         source = mapToCached(type.source)
     )
@@ -30,9 +32,10 @@ class HeadlinesEntityMapper @Inject constructor() :
         description = type.description,
         urlToImage = type.urlToImage,
         url = type.url,
-        publishedAt = type.publishedAt,
+        publishedAt = dateFormatter.toString(type.publishedAt),
         content = type.content,
-        source = mapToCached(type.source)
+        source = mapToCached(type.source),
+        sourceId = type.source.id!!
     )
 
     private fun mapToCached(type: SourceHeadlineDataModel) = SourceHeadlineEntity(

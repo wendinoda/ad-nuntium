@@ -4,16 +4,29 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import zw.co.data.mapper.HeadlinesDataMapper
 import zw.co.data.mapper.Mapper
+import zw.co.data.mapper.NewsDataMapper
 import zw.co.data.mapper.SourcesDataMapper
+import zw.co.data.model.HeadlinesDataModel
+import zw.co.data.model.NewsDataModel
 import zw.co.data.model.SourcesSuccessDataModel
+import zw.co.data.repository.headlines.HeadlinesCacheRepository
+import zw.co.data.repository.headlines.HeadlinesRemoteRepository
+import zw.co.data.repository.repositoryImpl.HeadlinesRepositoryImpl
+import zw.co.data.repository.repositoryImpl.SourcesRepositoryImpl
 import zw.co.data.repository.sources.SourcesCacheRepository
 import zw.co.data.repository.sources.SourcesRemoteRepository
-import zw.co.data.repository.repositoryImpl.SourcesRepositoryImpl
+import zw.co.data.source.headlines.HeadlinesCacheSource
+import zw.co.data.source.headlines.HeadlinesDataStoreFactory
+import zw.co.data.source.headlines.HeadlinesRemoteSource
 import zw.co.data.source.sources.SourcesCacheSource
 import zw.co.data.source.sources.SourcesDataStoreFactory
 import zw.co.data.source.sources.SourcesRemoteSource
+import zw.co.domain.model.Headlines
+import zw.co.domain.model.News
 import zw.co.domain.model.SourcesSuccess
+import zw.co.domain.repository.HeadlinesRepository
 import zw.co.domain.repository.SourcesRepository
 
 @Module
@@ -44,4 +57,35 @@ class DataModule {
     @Provides
     fun providesSourcesDataMapper(): Mapper<SourcesSuccessDataModel, SourcesSuccess> =
         SourcesDataMapper()
+
+    @Provides
+    fun providesHeadlinesRepository(
+        factory: HeadlinesDataStoreFactory,
+        mapper: HeadlinesDataMapper
+    ): HeadlinesRepository = HeadlinesRepositoryImpl(
+        factory, mapper
+    )
+
+    @Provides
+    fun providesHeadlinesCacheSource(
+        headlinesCache: HeadlinesCacheRepository
+    ): zw.co.data.repository.headlines.HeadlinesRepository = HeadlinesCacheSource(
+        headlinesCache
+    )
+
+    @Provides
+    fun providesHeadlinesRemoteSource(
+        headlinesRemote: HeadlinesRemoteRepository
+    ): zw.co.data.repository.headlines.HeadlinesRepository = HeadlinesRemoteSource(
+        headlinesRemote
+    )
+
+    @Provides
+    fun providesHeadlinesDataMapper(): Mapper<HeadlinesDataModel, Headlines> =
+        HeadlinesDataMapper()
+
+    @Provides
+    fun providesNewsDataMapper(
+        mapper: HeadlinesDataMapper
+    ): Mapper<NewsDataModel, News> = NewsDataMapper(mapper)
 }

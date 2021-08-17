@@ -1,32 +1,32 @@
 package zw.co.data
 
+import zw.co.data.ArticlesDummyData
 import zw.co.data.model.HeadlinesDataModel
-import zw.co.domain.model.Articles
+import zw.co.data.model.NewsDataModel
 import zw.co.domain.model.Headlines
-import zw.co.domain.model.SourceHeadline
-import zw.co.test_module.buildDate
+import zw.co.domain.model.News
 
-object HeadlinesDummyData {
-    val headlinesArray1 = arrayOf(
-        HeadlinesDataModel(
+object NewsDummyData {
+    val newsArray1 = arrayOf(
+        NewsDataModel(
             status = "ok",
             totalResults = 2,
             articles = ArticlesDummyData.articlesDataModel1,
         ),
-        Headlines(
+        News(
             status = "ok",
             totalResults = 2,
             articles = ArticlesDummyData.articles1,
         )
     )
 
-    val headlinesArray2 = arrayOf(
-        HeadlinesDataModel(
+    val newsArray2 = arrayOf(
+        NewsDataModel(
             status = "ok",
             totalResults = 2,
             articles = ArticlesDummyData.articlesDataModel2,
         ),
-        Headlines(
+        News(
             status = "ok",
             totalResults = 2,
             articles = ArticlesDummyData.articles2,

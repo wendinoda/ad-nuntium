@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import zw.co.domain.usecase.sources.GetAllSourcesUseCase
 import zw.co.presentation.base.BaseViewModel
-import zw.co.presentation.base.State
+import zw.co.presentation.base.BaseState
 import zw.co.presentation.error.ErrorHandler
 import zw.co.presentation.mapper.SourceMapper
 import javax.inject.Inject
@@ -18,9 +18,9 @@ class SourceViewModel @Inject constructor(
     private val getAllSourcesUseCase: GetAllSourcesUseCase,
     private val mapper: SourceMapper,
     private val errorHandler: ErrorHandler,
-) : BaseViewModel<State<SourceState>, SourceIntent, SourceEffects>() {
-    override fun createInitialState(): State<SourceState> {
-        return State(
+) : BaseViewModel<BaseState<SourceState>, SourceIntent, SourceEffects>() {
+    override fun createInitialState(): BaseState<SourceState> {
+        return BaseState(
             SourceState.Idle()
         )
     }

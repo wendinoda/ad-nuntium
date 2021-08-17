@@ -1,4 +1,7 @@
 package zw.co.domain.model
 
-class News {
-}
+data class News(
+    val status: String,
+    val totalResults: Int,
+    val articles: List<Articles>
+)

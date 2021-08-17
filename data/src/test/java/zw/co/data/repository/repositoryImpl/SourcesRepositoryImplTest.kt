@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
@@ -43,7 +44,7 @@ class SourcesRepositoryImplTest {
     fun getSources() {
         runBlocking {
             whenever(mapper.mapFromEntity(getSourcesDataModel())).thenReturn(mock())
-            whenever(factory.retrieveDataStore(true)).thenReturn(mock())
+            whenever(factory.retrieveDataStore(Mockito.anyBoolean())).thenReturn(mock())
         }
     }
 }

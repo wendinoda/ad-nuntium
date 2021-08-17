@@ -17,7 +17,7 @@ class HeadlinesEntityMapper @Inject constructor(
         articles = type.articles.map { mapFromEntity(it) }
     )
 
-    private fun mapFromEntity(type: ArticlesEntity) = ArticlesDataModel(
+    fun mapFromEntity(type: ArticlesEntity) = ArticlesDataModel(
         title = type.title,
         description = type.description,
         author = type.author,

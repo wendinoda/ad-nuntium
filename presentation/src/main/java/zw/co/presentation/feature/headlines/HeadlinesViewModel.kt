@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import zw.co.domain.usecase.headlines.GetAllHeadlinesUseCase
 import zw.co.domain.usecase.headlines.GetHeadlinesByCategoryUseCase
 import zw.co.presentation.base.BaseViewModel
-import zw.co.presentation.base.State
+import zw.co.presentation.base.BaseState
 import zw.co.presentation.error.ErrorHandler
 import zw.co.presentation.mapper.HeadlinesMapper
 import javax.inject.Inject
@@ -20,9 +20,9 @@ class HeadlinesViewModel @Inject constructor(
     private val getHeadlinesByCategoryUseCase: GetHeadlinesByCategoryUseCase,
     private val mapper: HeadlinesMapper,
     private val errorHandler: ErrorHandler
-) : BaseViewModel<State<HeadlinesState>, HeadlinesIntent, HeadlinesEffects>() {
-    override fun createInitialState(): State<HeadlinesState> {
-        return State(
+) : BaseViewModel<BaseState<HeadlinesState>, HeadlinesIntent, HeadlinesEffects>() {
+    override fun createInitialState(): BaseState<HeadlinesState> {
+        return BaseState(
             HeadlinesState.Idle()
         )
     }
@@ -33,7 +33,7 @@ class HeadlinesViewModel @Inject constructor(
                 getHeadLines()
             }
             is HeadlinesIntent.LoadHeadLinesByCategory -> {
-                getHeadlinesByCategoryUseCase()
+                getHeadlinesByCategoryUseCase(intent.category)
             }
         }
     }

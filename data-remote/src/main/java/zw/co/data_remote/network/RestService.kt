@@ -6,6 +6,7 @@ import retrofit2.http.Header
 import retrofit2.http.Query
 import zw.co.data_remote.BuildConfig
 import zw.co.data_remote.model.HeadlinesEntity
+import zw.co.data_remote.model.NewsEntity
 import zw.co.data_remote.model.SourcesSuccessEntity
 
 interface RestService {
@@ -20,4 +21,7 @@ interface RestService {
         @Query("category") category: String,
         @Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY
     ): Flow<HeadlinesEntity>
+
+    @GET("v2/everything")
+    suspend fun getNewsStories(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): Flow<NewsEntity>
 }
