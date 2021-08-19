@@ -1,6 +1,7 @@
 package zw.co.presentation.feature.news
 
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -12,6 +13,7 @@ import zw.co.presentation.error.ErrorHandler
 import zw.co.presentation.mapper.NewsMapper
 import javax.inject.Inject
 
+@HiltViewModel
 class NewsViewModel @Inject constructor(
     private val getNewsStoriesUseCase: GetNewsStoriesUseCase,
     private val mapper: NewsMapper,

@@ -79,6 +79,17 @@ dependencies {
     implementation androidXDependencies.roomRuntime
     implementation androidXDependencies.room
     implementation androidXDependencies.flexiBox
+    implementation androidXDependencies.composeRuntime
+    implementation androidXDependencies.composeUi
+    implementation androidXDependencies.composeFountationLayout
+    implementation androidXDependencies.composeMaterial
+    implementation androidXDependencies.composeMaterialIcon
+    implementation androidXDependencies.composeFountation
+    implementation androidXDependencies.composeAnimation
+    implementation androidXDependencies.activityCompose
+    implementation androidXDependencies.composeNavigation
+    implementation androidXDependencies.composeViewModel
+    implementation androidXDependencies.accompanistSwipeToRefresh
 
     annotationProcessor androidXDependencies.roomCompiler
     kapt androidXDependencies.roomCompiler
@@ -87,5 +98,10 @@ dependencies {
 
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit
-    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.composeTest
+    androidTestImplementation testDependencies.composeTestJUnit
+    debugImplementation testDependencies.composeTestManifest
+
+    testImplementation testDependencies.composeTestJUnit
+    testImplementation testDependencies.roboelectric
 }
