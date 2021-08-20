@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 import zw.co.domain.usecase.news.GetNewsStoriesUseCase
 import zw.co.presentation.base.BaseState
 import zw.co.presentation.base.BaseViewModel
+import zw.co.presentation.base.DispatchersProvider
 import zw.co.presentation.error.ErrorHandler
 import zw.co.presentation.mapper.NewsMapper
 import javax.inject.Inject
@@ -17,6 +18,7 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val getNewsStoriesUseCase: GetNewsStoriesUseCase,
     private val mapper: NewsMapper,
+    private val dispatchersProvider: DispatchersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel<BaseState<NewsState>, NewsIntent, NewsEffects>() {
     override fun createInitialState(): BaseState<NewsState> {
@@ -34,7 +36,7 @@ class NewsViewModel @Inject constructor(
     }
 
     private fun getNewsStories() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatchersProvider.io) {
             setState {
                 copy(
                     state = NewsState.InProgress

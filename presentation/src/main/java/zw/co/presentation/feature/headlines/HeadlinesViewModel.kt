@@ -10,6 +10,7 @@ import zw.co.domain.usecase.headlines.GetAllHeadlinesUseCase
 import zw.co.domain.usecase.headlines.GetHeadlinesByCategoryUseCase
 import zw.co.presentation.base.BaseViewModel
 import zw.co.presentation.base.BaseState
+import zw.co.presentation.base.DispatchersProvider
 import zw.co.presentation.error.ErrorHandler
 import zw.co.presentation.mapper.HeadlinesMapper
 import javax.inject.Inject
@@ -19,6 +20,7 @@ class HeadlinesViewModel @Inject constructor(
     private val getAllHeadlinesUseCase: GetAllHeadlinesUseCase,
     private val getHeadlinesByCategoryUseCase: GetHeadlinesByCategoryUseCase,
     private val mapper: HeadlinesMapper,
+    private val dispatchersProvider: DispatchersProvider,
     private val errorHandler: ErrorHandler
 ) : BaseViewModel<BaseState<HeadlinesState>, HeadlinesIntent, HeadlinesEffects>() {
     override fun createInitialState(): BaseState<HeadlinesState> {
@@ -39,7 +41,7 @@ class HeadlinesViewModel @Inject constructor(
     }
 
     private fun getHeadLines() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatchersProvider.io) {
             setState {
                 copy(
                     state = HeadlinesState.InProgress
