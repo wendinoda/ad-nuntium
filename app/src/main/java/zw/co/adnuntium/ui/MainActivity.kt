@@ -9,7 +9,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import zw.co.adnuntium.R
 import zw.co.adnuntium.databinding.ActivityMainBinding
-import zw.co.adnuntium.ui.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

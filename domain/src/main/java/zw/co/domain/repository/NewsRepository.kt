@@ -6,8 +6,4 @@ import zw.co.domain.model.News
 
 interface NewsRepository {
     suspend fun getNewsStories(): Flow<News>
-
-    suspend fun clearNewsStories()
-
-    suspend fun saveNewsStories(news: List<Articles>)
 }

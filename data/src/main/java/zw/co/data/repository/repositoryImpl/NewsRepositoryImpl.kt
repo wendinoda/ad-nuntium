@@ -14,21 +14,10 @@ import javax.inject.Inject
 class NewsRepositoryImpl @Inject constructor(
     private val factory: NewsDataStoreFactory,
     private val newsMapper: NewsDataMapper,
-    private val headlinesMapper: HeadlinesDataMapper
 ): NewsRepository {
     override suspend fun getNewsStories(): Flow<News> {
-        return factory.retrieveDataStore(factory.retrieveCacheDataStore().isCached())
-            .getNewsStories().map {
+        return factory.retrieveDataStore().getNewsStories().map {
                 newsMapper.mapFromEntity(it)
             }
-    }
-
-    override suspend fun clearNewsStories() {
-        factory.retrieveCacheDataStore().clearNewsStories()
-    }
-
-    override suspend fun saveNewsStories(news: List<Articles>) {
-        val newsDataModel = mutableListOf<ArticlesDataModel>()
-        news.map { newsDataModel.add(headlinesMapper.mapToEntity(it)) }
     }
 }

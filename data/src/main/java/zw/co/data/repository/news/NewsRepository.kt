@@ -6,10 +6,4 @@ import zw.co.data.model.NewsDataModel
 
 interface NewsRepository {
     suspend fun getNewsStories(): Flow<NewsDataModel>
-
-    suspend fun clearNewsStories()
-
-    suspend fun saveNewsStories(news: List<ArticlesDataModel>)
-
-    suspend fun isCached(): Boolean
 }

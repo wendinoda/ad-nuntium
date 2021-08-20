@@ -13,13 +13,17 @@ import zw.co.data.model.NewsDataModel
 import zw.co.data.model.SourcesSuccessDataModel
 import zw.co.data.repository.headlines.HeadlinesCacheRepository
 import zw.co.data.repository.headlines.HeadlinesRemoteRepository
+import zw.co.data.repository.news.NewsRemoteRepository
 import zw.co.data.repository.repositoryImpl.HeadlinesRepositoryImpl
+import zw.co.data.repository.repositoryImpl.NewsRepositoryImpl
 import zw.co.data.repository.repositoryImpl.SourcesRepositoryImpl
 import zw.co.data.repository.sources.SourcesCacheRepository
 import zw.co.data.repository.sources.SourcesRemoteRepository
 import zw.co.data.source.headlines.HeadlinesCacheSource
 import zw.co.data.source.headlines.HeadlinesDataStoreFactory
 import zw.co.data.source.headlines.HeadlinesRemoteSource
+import zw.co.data.source.news.NewsDataStoreFactory
+import zw.co.data.source.news.NewsRemoteSource
 import zw.co.data.source.sources.SourcesCacheSource
 import zw.co.data.source.sources.SourcesDataStoreFactory
 import zw.co.data.source.sources.SourcesRemoteSource
@@ -27,7 +31,10 @@ import zw.co.domain.model.Headlines
 import zw.co.domain.model.News
 import zw.co.domain.model.SourcesSuccess
 import zw.co.domain.repository.HeadlinesRepository
+import zw.co.domain.repository.NewsRepository
 import zw.co.domain.repository.SourcesRepository
+import zw.co.presentation.mapper.HeadlinesMapper
+import zw.co.presentation.mapper.NewsMapper
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -88,4 +95,20 @@ class DataModule {
     fun providesNewsDataMapper(
         mapper: HeadlinesDataMapper
     ): Mapper<NewsDataModel, News> = NewsDataMapper(mapper)
+
+    @Provides
+    fun providesNewsRepository(
+        factory: NewsDataStoreFactory,
+        mapper: NewsDataMapper,
+        //headlinesMapper: HeadlinesDataMapper
+    ): NewsRepository = NewsRepositoryImpl(
+        factory, mapper, //headlinesMapper
+    )
+
+    @Provides
+    fun providesNesRemoteSource(
+        newsRemote: NewsRemoteRepository
+    ): zw.co.data.repository.news.NewsRepository = NewsRemoteSource(
+        newsRemote
+    )
 }

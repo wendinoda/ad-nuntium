@@ -22,7 +22,6 @@ import zw.co.data_cache.model.HeadlineArticlesEntity
 import zw.co.data_cache.model.SourceEntity
 import zw.co.data_cache.repository.HeadlinesCacheRepositoryImpl
 import zw.co.data_cache.repository.SourcesCacheRepositoryImpl
-import zw.co.data_remote.model.ArticlesEntity
 import javax.inject.Singleton
 
 @Module

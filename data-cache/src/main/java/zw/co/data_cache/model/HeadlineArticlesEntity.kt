@@ -14,7 +14,7 @@ data class HeadlineArticlesEntity(
     val url: String,
     val urlToImage: String,
     val publishedAt: String,
-    val content: String
+    val content: String,
 )
 
 data class SourceHeadlineEntity(
