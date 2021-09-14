@@ -1,14 +1,14 @@
 package zw.co.data_remote.model
 
+import com.squareup.moshi.Json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
 data class NewsEntity(
-    @SerialName("status")
+    @Json(name = "status")
     val status: String,
-    @SerialName("totalResults")
+    @Json(name = "totalResults")
     val totalResults: Int,
-    @SerialName("articles")
+    @Json(name = "articles")
     val articles: List<ArticlesEntity>
 )

@@ -10,16 +10,16 @@ data class HeadlinesView(
 
 data class ArticlesView(
     val source: SourceHeadlineView,
-    val author: String,
-    val title: String,
-    val description: String,
-    val url: String,
-    val urlToImage: String,
-    val publishedAt: DateTime,
-    val content: String
+    val author: String?,
+    val title: String?,
+    val description: String?,
+    val url: String?,
+    val urlToImage: String?,
+    val publishedAt: DateTime?,
+    val content: String?
 )
 
 data class SourceHeadlineView(
     val id: String?,
-    val name: String,
+    val name: String?,
 )

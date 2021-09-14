@@ -19,7 +19,7 @@ import zw.co.domain.usecase.sources.GetAllSourcesUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DomainModule {
+object DomainModule {
     @Provides
     fun provideAllSourcesUseCase(
         repository: SourcesRepository

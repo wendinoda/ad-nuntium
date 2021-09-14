@@ -26,7 +26,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DataCacheModule {
+object DataCacheModule {
 
     @Singleton
     @Provides

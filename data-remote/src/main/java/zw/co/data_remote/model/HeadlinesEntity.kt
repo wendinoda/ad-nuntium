@@ -1,42 +1,41 @@
 package zw.co.data_remote.model
 
+import com.squareup.moshi.Json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
+
 data class HeadlinesEntity(
-    @SerialName("status")
+    @Json(name = "status")
     val status: String,
-    @SerialName("totalResults")
+    @Json(name = "totalResults")
     val totalResults: Int,
-    @SerialName("articles")
+    @Json(name = "articles")
     val articles: List<ArticlesEntity>
 )
 
-@Serializable
 data class ArticlesEntity(
-    @SerialName("source")
+    @Json(name = "source")
     val source: SourceHeadlineEntity,
-    @SerialName("author")
-    val author: String,
-    @SerialName("title")
-    val title: String,
-    @SerialName("description")
-    val description: String,
-    @SerialName("url")
-    val url: String,
-    @SerialName("urlToImage")
-    val urlToImage: String,
-    @SerialName("publishedAt")
-    val publishedAt: String,
-    @SerialName("content")
-    val content: String
+    @Json(name = "author")
+    val author: String?,
+    @Json(name = "title")
+    val title: String?,
+    @Json(name = "description")
+    val description: String?,
+    @Json(name = "url")
+    val url: String?,
+    @Json(name = "urlToImage")
+    val urlToImage: String?,
+    @Json(name = "publishedAt")
+    val publishedAt: String?,
+    @Json(name = "content")
+    val content: String?
 )
 
-@Serializable
 data class SourceHeadlineEntity(
-    @SerialName("id")
+    @Json(name = "id")
     val id: String?,
-    @SerialName("name")
-    val name: String,
+    @Json(name = "name")
+    val name: String?,
 )

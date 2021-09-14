@@ -24,7 +24,7 @@ class HeadlinesEntityMapper @Inject constructor(
         content = type.content,
         url = type.url,
         urlToImage = type.urlToImage,
-        publishedAt = dateFormatter.format(type.publishedAt),
+        publishedAt = type.publishedAt?.let { dateFormatter.format(it) },
         source = mapFromEntity(type.source),
     )
 

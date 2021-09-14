@@ -54,6 +54,9 @@ android {
         implementation androidXDependencies.kotlinSerializationConvertor
         implementation androidXDependencies.kotlinReflection
         implementation androidXDependencies.jodaTime
+        implementation androidXDependencies.moshi
+        implementation androidXDependencies.moshiConvertor
+        implementation androidXDependencies.moshiKotlin
 
         testImplementation project(':test_module')
         testImplementation testDependencies.coroutinesTest

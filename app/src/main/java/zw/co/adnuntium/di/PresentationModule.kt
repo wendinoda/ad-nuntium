@@ -26,9 +26,8 @@ annotation class ViewModelKey(val value: KClass<out ViewModel>)*/
 
 @Module
 @InstallIn(SingletonComponent::class)
-class PresentationModule {
+object PresentationModule {
 
-    @Singleton
     @Provides
     fun providesDispatches(): DispatchersProvider = StandardDispatchers()
 

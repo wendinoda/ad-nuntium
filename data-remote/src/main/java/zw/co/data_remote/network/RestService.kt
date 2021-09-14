@@ -11,17 +11,20 @@ import zw.co.data_remote.model.SourcesSuccessEntity
 
 interface RestService {
     @GET("/v2/sources")
-    suspend fun getSources(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): Flow<SourcesSuccessEntity>
+    suspend fun getSources(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): SourcesSuccessEntity
 
     @GET("v2/top-headlines")
-    suspend fun getHeadlines(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): Flow<HeadlinesEntity>
+    suspend fun getHeadlines(
+        @Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY,
+        @Query("language") language: String = "en",
+    ): HeadlinesEntity
 
     @GET("v2/top-headlines")
     suspend fun getHeadlinesByCategory(
         @Query("category") category: String,
         @Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY
-    ): Flow<HeadlinesEntity>
+    ): HeadlinesEntity
 
     @GET("v2/everything")
-    suspend fun getNewsStories(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): Flow<NewsEntity>
+    suspend fun getNewsStories(@Header("X-Api-Key") apiKey: String = BuildConfig.API_KEY): NewsEntity
 }

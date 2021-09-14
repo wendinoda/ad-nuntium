@@ -12,7 +12,7 @@ ext {
     appCompat = "1.3.0"
     navigation = "2.3.5"
     constraintLayout = "2.0.4"
-    coreKTX = "1.5.0"
+    coreKTX = "1.5.21"
     material = "1.3.0"
     daggerHilt = "2.37"
     androidxTest = "1.2.0"
@@ -23,23 +23,24 @@ ext {
     mockito = "3.11.1"
     mockitoKotlin = "3.2.0"
     gradleVersion = "4.1.3"
-    kotlin = "1.5.10"
+    kotlin = "1.5.21"
     javaxInject = '1'
     timber = "4.7.1"
     coreTesting = "2.1.0"
     retrofit = "2.9.0"
     okHttpBom = "4.9.0"
     jodaTime = "2.10.5"
-    kotlinxCoroutines = "1.5.0"
+    kotlinxCoroutines = "1.5.2"
     room = "2.3.0"
     moshi = "1.12.0"
+    coroutineAdapter = "0.9.2"
     kotlinSerialization = "1.2.1"
     kotlinSerializationConvertor = "0.8.0"
     googleTruth = "1.1.3"
     roboelectric = "4.5.1"
     lifecycle = "2.3.1"
     shimmerVersion = "0.5.0"
-    coil = "1.3.0"
+    coil = "1.3.2"
     hiltViewModel = "1.0.0-alpha03"
     hiltCompiler = "1.0.0"
     flexiBox = "3.0.0"
@@ -59,55 +60,59 @@ ext {
 
     //AndroidX dependencies
     androidXDependencies = [
-            "kotlin"                      : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin}",
-            "fragmentKtx"                 : "androidx.fragment:fragment-ktx:${appCompat}",
-            "coreKTX"                     : "androidx.core:core-ktx:${coreKTX}",
-            "constraintLayout"            : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
-            "material"                    : "com.google.android.material:material:${material}",
-            "appCompat"                   : "androidx.appcompat:appcompat:${appCompat}",
-            "navigationFragment"          : "androidx.navigation:navigation-fragment-ktx:${navigation}",
-            "navigationUi"                : "androidx.navigation:navigation-ui-ktx:${navigation}",
-            "roomRuntime"                 : "androidx.room:room-runtime:${room}",
-            "room"                        : "androidx.room:room-ktx:${room}",
-            "roomCompiler"                : "androidx.room:room-compiler:${room}",
-            "kotlinxCoroutines"           : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutines}",
-            "daggerHiltAndroid"           : "com.google.dagger:hilt-android:${daggerHilt}",
-            "daggerHiltCompiler"          : "com.google.dagger:hilt-android-compiler:${daggerHilt}",
-            "hiltCompiler"                : "androidx.hilt:hilt-compiler:${hiltCompiler}",
-            "hiltViewModel"               : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModel}",
-            "hiltCore"                    : "com.google.dagger:hilt-core:${daggerHilt}",
-            "okHttpBom"                   : "com.squareup.okhttp3:okhttp-bom:${okHttpBom}",
-            "okhttp"                      : "com.squareup.okhttp3:okhttp",
-            "okhttp3LoggingInterceptor"   : "com.squareup.okhttp3:logging-interceptor",
-            "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofit}",
-            "timber"                      : "com.jakewharton.timber:timber:${timber}",
-            "jodaTime"                    : "joda-time:joda-time:${jodaTime}",
-            "javaxInject"                 : "javax.inject:javax.inject:${javaxInject}",
-            "moshi"                       : "com.squareup.moshi:moshi:${moshi}",
-            "moshiConvertor"              : "com.squareup.retrofit2:converter-moshi:${retrofit}",
-            "kotlinSerialization"         : "org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinSerialization}",
-            "kotlinSerializationConvertor": "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${kotlinSerializationConvertor}",
-            "kotlinReflection"            : "org.jetbrains.kotlin:kotlin-reflect:${kotlin}",
-            "lifeCycleViewModel"          : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}",
-            "lifeCycleLiveData"           : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}",
-            "lifeCycleCompiler"           : "androidx.lifecycle:lifecycle-compiler:${lifecycle}",
-            "shimmer"                     : "com.facebook.shimmer:shimmer:${shimmerVersion}",
-            "coil"                        : "io.coil-kt:coil:${coil}",
-            "flexiBox"                    : "com.google.android.flexbox:flexbox:${flexiBox}",
+            "kotlin"                       : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin}",
+            "fragmentKtx"                  : "androidx.fragment:fragment-ktx:${appCompat}",
+            "coreKTX"                      : "androidx.core:core-ktx:${coreKTX}",
+            "constraintLayout"             : "androidx.constraintlayout:constraintlayout:${constraintLayout}",
+            "material"                     : "com.google.android.material:material:${material}",
+            "appCompat"                    : "androidx.appcompat:appcompat:${appCompat}",
+            "navigationFragment"           : "androidx.navigation:navigation-fragment-ktx:${navigation}",
+            "navigationUi"                 : "androidx.navigation:navigation-ui-ktx:${navigation}",
+            "roomRuntime"                  : "androidx.room:room-runtime:${room}",
+            "room"                         : "androidx.room:room-ktx:${room}",
+            "roomCompiler"                 : "androidx.room:room-compiler:${room}",
+            "kotlinxCoroutines"            : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutines}",
+            "daggerHiltAndroid"            : "com.google.dagger:hilt-android:${daggerHilt}",
+            "daggerHiltCompiler"           : "com.google.dagger:hilt-android-compiler:${daggerHilt}",
+            "hiltCompiler"                 : "androidx.hilt:hilt-compiler:${hiltCompiler}",
+            "hiltViewModel"                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModel}",
+            "hiltCore"                     : "com.google.dagger:hilt-core:${daggerHilt}",
+            "okHttpBom"                    : "com.squareup.okhttp3:okhttp-bom:${okHttpBom}",
+            "okhttp"                       : "com.squareup.okhttp3:okhttp",
+            "okhttp3LoggingInterceptor"    : "com.squareup.okhttp3:logging-interceptor",
+            "retrofit"                     : "com.squareup.retrofit2:retrofit:${retrofit}",
+            "timber"                       : "com.jakewharton.timber:timber:${timber}",
+            "jodaTime"                     : "joda-time:joda-time:${jodaTime}",
+            "javaxInject"                  : "javax.inject:javax.inject:${javaxInject}",
+            "moshi"                        : "com.squareup.moshi:moshi:${moshi}",
+            "moshiKotlin"                  : "com.squareup.moshi:moshi-kotlin:${moshi}",
+            "moshiConvertor"               : "com.squareup.retrofit2:converter-moshi:${retrofit}",
+            "kotlinSerialization"          : "org.jetbrains.kotlinx:kotlinx-serialization-json:${kotlinSerialization}",
+            "kotlinSerializationConvertor" : "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${kotlinSerializationConvertor}",
+            "kotlinReflection"             : "org.jetbrains.kotlin:kotlin-reflect:${kotlin}",
+            "lifeCycleViewModel"           : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}",
+            "lifeCycleLiveData"            : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}",
+            "lifeCycleCompiler"            : "androidx.lifecycle:lifecycle-compiler:${lifecycle}",
+            "shimmer"                      : "com.facebook.shimmer:shimmer:${shimmerVersion}",
+            "coil"                         : "io.coil-kt:coil-compose:${coil}",
+            "flexiBox"                     : "com.google.android.flexbox:flexbox:${flexiBox}",
 
-            //JetPack compose dependecies
-            "composeRuntime": "androidx.compose.runtime:runtime:${composeVersion}",
-            "composeUi": "androidx.compose.ui:ui:${composeVersion}",
-            "composeFountationLayout": "androidx.compose.foundation:foundation-layout:${composeVersion}",
-            "composeMaterial": "androidx.compose.material:material:${composeVersion}",
-            "composeMaterialIcon": "androidx.compose.material:material-icons-extended:${composeVersion}",
-            "composeFountation": "androidx.compose.foundation:foundation:${composeVersion}",
-            "composeAnimation": "androidx.compose.animation:animation:${composeVersion}",
-            "activityCompose": "androidx.activity:activity-compose:${activityComposeVersion}",
-            "composeNavigation": "androidx.navigation:navigation-compose:${composeNavVersion}",
-            "composeViewModel": "androidx.lifecycle:lifecycle-viewmodel-compose:${composeVMVersion}",
+            "composeCompiler"              : "androidx.compose.compiler:compiler:${composeNavVersion}",
+            "composeRuntime"               : "androidx.compose.runtime:runtime:${composeVersion}",
+            "composeUi"                    : "androidx.compose.ui:ui:${composeVersion}",
+            "composeFountationLayout"      : "androidx.compose.foundation:foundation-layout:${composeVersion}",
+            "composeMaterial"              : "androidx.compose.material:material:${composeVersion}",
+            "composeMaterialIcon"          : "androidx.compose.material:material-icons-extended:${composeVersion}",
+            "composeFountation"            : "androidx.compose.foundation:foundation:${composeVersion}",
+            "composeAnimation"             : "androidx.compose.animation:animation:${composeVersion}",
+            "activityCompose"              : "androidx.activity:activity-compose:${activityComposeVersion}",
+            "composeNavigation"            : "androidx.navigation:navigation-compose:${composeNavVersion}",
+            "composeViewModel"             : "androidx.lifecycle:lifecycle-viewmodel-compose:${composeVMVersion}",
+            "composeTooling"               : "androidx.compose.ui:ui-tooling:${composeVersion}",
 
-            "accompanistSwipeToRefresh": "com.google.accompanist:accompanist-swiperefresh:${accompanistVersion}",
+            "accompanistSwipeToRefresh"    : "com.google.accompanist:accompanist-swiperefresh:${accompanistVersion}",
+            "accompanistInsets"            : "com.google.accompanist:accompanist-insets:${accompanistVersion}",
+            "accompanistSystemUiController": "com.google.accompanist:accompanist-systemuicontroller:${accompanistVersion}"
 
     ]
 
@@ -131,8 +136,8 @@ ext {
             "mockitoKotlin"      : "org.mockito.kotlin:mockito-kotlin:${mockitoKotlin}",
             "googleTruth"        : "com.google.truth:truth:${googleTruth}",
             "roboelectric"       : "org.robolectric:robolectric:${roboelectric}",
-            "composeTestJUnit": "androidx.compose.ui:ui-test-junit4:${composeVersion}",
-            "composeTest": "androidx.compose.ui:ui-test:${composeVersion}",
+            "composeTestJUnit"   : "androidx.compose.ui:ui-test-junit4:${composeVersion}",
+            "composeTest"        : "androidx.compose.ui:ui-test:${composeVersion}",
             "composeTestManifest": "androidx.compose.ui:ui-test-manifest:${composeVersion}",
     ]
 }

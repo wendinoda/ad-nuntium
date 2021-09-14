@@ -8,16 +8,16 @@ import androidx.room.PrimaryKey
 data class HeadlineArticlesEntity(
     @PrimaryKey val sourceId: String,
     @Embedded val source: SourceHeadlineEntity,
-    val author: String,
-    val title: String,
-    val description: String,
-    val url: String,
-    val urlToImage: String,
-    val publishedAt: String,
-    val content: String,
+    val author: String?,
+    val title: String?,
+    val description: String?,
+    val url: String?,
+    val urlToImage: String?,
+    val publishedAt: String?,
+    val content: String?,
 )
 
 data class SourceHeadlineEntity(
     val id: String?,
-    val name: String,
+    val name: String?,
 )

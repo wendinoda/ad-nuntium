@@ -1,6 +1,7 @@
 package zw.co.data_remote.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import zw.co.data.model.HeadlinesDataModel
 import zw.co.data.repository.headlines.HeadlinesRemoteRepository
@@ -12,16 +13,16 @@ import javax.inject.Inject
 class HeadlinesRepositoryImpl @Inject constructor(
     private val remote: RestService,
     private val mapper: HeadlinesEntityMapper
-): HeadlinesRemoteRepository {
+) : HeadlinesRemoteRepository {
     override suspend fun getHeadlines(): Flow<HeadlinesDataModel> {
-        return remote.getHeadlines().map {
-            mapper.mapFromEntity(it)
-        }
+        val headlinesEntity = remote.getHeadlines()
+        val headlines = mapper.mapFromEntity(headlinesEntity)
+        return flowOf(headlines)
     }
 
     override suspend fun getHeadlinesByCategory(category: String): Flow<HeadlinesDataModel> {
-        return remote.getHeadlinesByCategory(category).map {
-            mapper.mapFromEntity(it)
-        }
+        val headlinesByCategoryEntity = remote.getHeadlinesByCategory(category)
+        val headlinesCategory = mapper.mapFromEntity(headlinesByCategoryEntity)
+        return flowOf(headlinesCategory)
     }
 }

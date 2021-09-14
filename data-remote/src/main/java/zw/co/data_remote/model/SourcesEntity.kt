@@ -1,41 +1,29 @@
 package zw.co.data_remote.model
 
+import com.squareup.moshi.Json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
 data class SourcesSuccessEntity(
-    @SerialName("status")
+    @Json(name = "status")
     val status: String,
-    @SerialName("sources")
+    @Json(name = "sources")
     val sources: List<SourceEntity>
 )
 
-@Serializable
 data class SourceEntity(
-    @SerialName("id")
+    @Json(name = "id")
     val id: String,
-    @SerialName("name")
+    @Json(name = "name")
     val name: String,
-    @SerialName("description")
+    @Json(name = "description")
     val description: String,
-    @SerialName("url")
+    @Json(name = "url")
     val url: String,
-    @SerialName("category")
+    @Json(name = "category")
     val category: String,
-    @SerialName("language")
+    @Json(name = "language")
     val language: String,
-    @SerialName("country")
+    @Json(name = "country")
     val country: String,
-)
-
-@Serializable
-data class SourcesErrorEntity(
-    val status: String,
-    val sources: ErrorEntity
-)
-
-@Serializable
-data class ErrorEntity(
-    val code: String
 )

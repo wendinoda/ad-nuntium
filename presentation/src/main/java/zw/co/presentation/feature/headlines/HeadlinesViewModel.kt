@@ -1,5 +1,6 @@
 package zw.co.presentation.feature.headlines
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -54,6 +55,7 @@ class HeadlinesViewModel @Inject constructor(
                     }
                 }
                 .collect {
+
                     setState {
                         copy(
                             HeadlinesState.Success(

@@ -38,7 +38,7 @@ import zw.co.presentation.mapper.NewsMapper
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DataModule {
+object DataModule {
     @Provides
     fun providesSourcesRepository(
         factory: SourcesDataStoreFactory,

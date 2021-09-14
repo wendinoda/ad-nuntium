@@ -10,16 +10,16 @@ data class HeadlinesDataModel(
 
 data class ArticlesDataModel(
     val source: SourceHeadlineDataModel,
-    val author: String,
-    val title: String,
-    val description: String,
-    val url: String,
-    val urlToImage: String,
-    val publishedAt: DateTime,
-    val content: String
+    val author: String?,
+    val title: String?,
+    val description: String?,
+    val url: String?,
+    val urlToImage: String?,
+    val publishedAt: DateTime?,
+    val content: String?
 )
 
 data class SourceHeadlineDataModel(
     val id: String?,
-    val name: String,
+    val name: String?,
 )

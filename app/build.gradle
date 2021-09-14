@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
@@ -31,7 +30,12 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion globalConfiguration["kotlin"]
+        kotlinCompilerExtensionVersion globalConfiguration["composeVersion"]
     }
 
     compileOptions {
@@ -73,12 +77,12 @@ dependencies {
     implementation androidXDependencies.kotlinxCoroutines
     implementation androidXDependencies.timber
     implementation androidXDependencies.javaxInject
-    implementation androidXDependencies.shimmer
     implementation androidXDependencies.coil
     implementation androidXDependencies.kotlinSerialization
     implementation androidXDependencies.roomRuntime
     implementation androidXDependencies.room
     implementation androidXDependencies.flexiBox
+    //implementation androidXDependencies.composeCompiler
     implementation androidXDependencies.composeRuntime
     implementation androidXDependencies.composeUi
     implementation androidXDependencies.composeFountationLayout
@@ -89,7 +93,11 @@ dependencies {
     implementation androidXDependencies.activityCompose
     implementation androidXDependencies.composeNavigation
     implementation androidXDependencies.composeViewModel
+    implementation androidXDependencies.composeTooling
     implementation androidXDependencies.accompanistSwipeToRefresh
+    implementation androidXDependencies.accompanistInsets
+    implementation androidXDependencies.accompanistSystemUiController
+    implementation androidXDependencies.jodaTime
 
     annotationProcessor androidXDependencies.roomCompiler
     kapt androidXDependencies.roomCompiler

@@ -1,30 +1,30 @@
 package zw.co.data_remote.network
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import java.util.concurrent.TimeUnit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import zw.co.data_remote.BuildConfig
+import java.util.concurrent.TimeUnit
 
 object ServiceFactory {
 
-    @ExperimentalSerializationApi
     fun makeService(isDebug: Boolean): RestService {
         val okHttpClient = makeOkHttpClient(
-            makeLoggingInterceptor(isDebug))
+            makeLoggingInterceptor(isDebug)
+        )
         return makeService(okHttpClient)
     }
 
-    @ExperimentalSerializationApi
     private fun makeService(okHttpClient: OkHttpClient): RestService {
+        val moshiBuilder = Moshi.Builder().add(KotlinJsonAdapterFactory())
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(MoshiConverterFactory.create(moshiBuilder.build()))
             .build()
         return retrofit.create(RestService::class.java)
     }
